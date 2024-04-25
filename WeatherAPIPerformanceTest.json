@@ -1,0 +1,113 @@
+{
+	"info": {
+		"_postman_id": "5d911c7e-9abf-496c-9be5-fdb5e0d03074",
+		"name": "Weather API Performance Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18814322"
+	},
+	"item": [
+		{
+			"name": "Get Weather Forecast",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {",
+							"  pm.expect(pm.response.code).to.equal(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Response has required fields\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData.location).to.exist.and.to.be.an('object');",
+							"    pm.expect(responseData.current).to.exist.and.to.be.an('object');",
+							"    pm.expect(responseData.forecast).to.exist.and.to.be.an('object');",
+							"});",
+							"",
+							"",
+							"pm.test(\"Temperature is a number and within a valid range\", function () {",
+							"    const responseData = pm.response.json();",
+							"",
+							"    pm.expect(responseData.current.temp_c).to.be.a('number');",
+							"    pm.expect(responseData.current.temp_c).to.be.within(-100, 100);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Verify the presence and length of forecastday array\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData.forecast).to.be.an('object');",
+							"    pm.expect(responseData.forecast.forecastday).to.exist;",
+							"    pm.expect(responseData.forecast.forecastday).to.be.an('array').and.to.have.lengthOf(1);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "value",
+							"value": "b4e5da44442e4060b3b115625242303",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "key",
+							"type": "string"
+						},
+						{
+							"key": "in",
+							"value": "query",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.weatherapi.com/v1/forecast.json?key=https://api.weatherapi.com/v1/forecast.json?key=b4e5da44442e4060b3b115625242303&q=New%20York&days=1&q=New%20York&days=1",
+					"protocol": "https",
+					"host": [
+						"api",
+						"weatherapi",
+						"com"
+					],
+					"path": [
+						"v1",
+						"forecast.json"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "https://api.weatherapi.com/v1/forecast.json?key=b4e5da44442e4060b3b115625242303"
+						},
+						{
+							"key": "q",
+							"value": "New%20York"
+						},
+						{
+							"key": "days",
+							"value": "1"
+						},
+						{
+							"key": "q",
+							"value": "New%20York"
+						},
+						{
+							"key": "days",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
