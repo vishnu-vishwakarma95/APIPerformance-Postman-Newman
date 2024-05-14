@@ -10,8 +10,8 @@ export default function () {
   const url = `http://localhost:8080/job/API_Performance_Monitoring/buildWithParameters?ITERATIONS=${iterations}&token=authvishuapijob`;
 	console.log(url);
   // Construct HTTP request headers for basic authentication
-  const username = 'username'; // Your Jenkins username
-  const apiToken = 'token'; // Your Jenkins API token
+  const username = 'vishnu_vishwakarma'; // Your Jenkins username
+  const apiToken = '116c69db5a11cccf3e05b65d98a385c344'; // Your Jenkins API token
   const auth = username + ':' + apiToken;
   const params = {
     headers: {
